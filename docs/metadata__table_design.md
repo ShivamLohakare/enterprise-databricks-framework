@@ -10,4 +10,5 @@
 | target_table   | STRING        | Yes         | Destination table            |
 | write_mode     | STRING        | Yes         | overwrite/append/merge       |
 | primary_keys   | ARRAY<STRING> | No          | Business keys                |
+| schema_evolution_enabled | BOOLEAN | Yes     | Schema Change Accetance field|
 | active_flag    | BOOLEAN       | Yes         | Enable/disable processing    |
