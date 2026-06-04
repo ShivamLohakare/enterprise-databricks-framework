@@ -36,65 +36,65 @@
               Audit + Logging Framework
 
 4. Design Principles-
-    i. Fail Fast
-    ii. Centralized Error Handling
-    iii. Audit Every Failure
-    iv. Preserve Error Context
-    v. Generate Operational Alerts
-    vi. Prevent Invalid Data Propagation
+    1. Fail Fast
+    2. Centralized Error Handling
+    3. Audit Every Failure
+    4. Preserve Error Context
+    5. Generate Operational Alerts
+    6. Prevent Invalid Data Propagation
 
 5. Metadata Framework-
-    i. Store dataset onboarding configurations.
-    ii. Store source system information.
-    iii. Store target catalog/schema/table information.
-    iv. Store write strategies.
-    v. Store primary key definitions.
-    vi. Store schema evolution settings.
-    vii. Enable onboarding of new datasets without code changes.
+    1. Store dataset onboarding configurations.
+    2. Store source system information.
+    3. Store target catalog/schema/table information.
+    4. Store write strategies.
+    5. Store primary key definitions.
+    6. Store schema evolution settings.
+    7. Enable onboarding of new datasets without code changes.
 
 6. Reader Framework-
-    i. Read dataset configuration from metadata layer.
-    ii. Validate source file format and source path.
-    iii. Apply source-specific read options.
-    iv. Read source data into Spark DataFrame.
-    v. Handle source read exceptions.
-    vi. Log operational events.
-    vii. Return DataFrame to downstream framework components.
+    1. Read dataset configuration from metadata layer.
+    2. Validate source file format and source path.
+    3. Apply source-specific read options.
+    4. Read source data into Spark DataFrame.
+    5. Handle source read exceptions.
+    6. Log operational events.
+    7. Return DataFrame to downstream framework components.
 
 7. Writer Framework-
-   i. Read write modefrom metadata
-   ii. Construct catalog.schema.table
-   iii. Create target table automatically
-   iv. Handle error and exception properly
-   v. Logging the error in the audit log
-   vi. Support overwrite (V1)
-   vii. Future support for apend and merge
-   viii. Create target schema/table if not present.
-   ix. Support metadata-driven write strategies.
+    1. Read write modefrom metadata
+    2. Construct catalog.schema.table
+    3. Create target table automatically
+    4. Handle error and exception properly
+    5. Logging the error in the audit log
+    6. Support overwrite (V1)
+    7. Future support for apend and merge
+    8. Create target schema/table if not present.
+    9. Support metadata-driven write strategies.
 
 8. Audit Framework-
-    i. Generate unique batch identifier.
-    ii. Capture execution start event.
-    iii. Capture execution completion event.
-    iv. Capture execution failure event.
-    v. Store processing metrics.
-    vi. Store exception details.
-    vii. Store execution duration.
-    viii. Generate operational alerts.
+    1. Generate unique batch identifier.
+    2. Capture execution start event.
+    3. Capture execution completion event.
+    4. Capture execution failure event.
+    5. Store processing metrics.
+    6. Store exception details.
+    7. Store execution duration.
+    8. Generate operational alerts.
 
 9. Validation Framework-
-    i. For Bronze Layer Validation, Validate source accessibility and schema drift detection.
-    ii. For Silver Layer Validation, check deduplication, null, data quality, standardizaion, business rules.
-    iii. For Gold Layer Validation, check business rules.
+    1. For Bronze Layer Validation, Validate source accessibility and schema drift detection.
+    2. For Silver Layer Validation, check deduplication, null, data quality, standardizaion, business rules.
+    3. For Gold Layer Validation, check business rules.
 
 10. Schema Evolution Strategy-
      If schema drift occurs:
-        i. Load data into Bronze layer.
-        ii. Generate schema drift alert.
-        iii. Update audit logs.
-        iv. Stop Silver processing.
-        v. Stop Gold processing.
-        vi. Await schema review and approval. 
+        1. Load data into Bronze layer.
+        2. Generate schema drift alert.
+        3. Update audit logs.
+        4. Stop Silver processing.
+        5. Stop Gold processing.
+        6. Await schema review and approval. 
 
 11. Error Handling Strategy
 ### Objective - The framework implements a centralized error handling mechanism to ensure consistent failure management, operational visibility, and simplified troubleshooting across all datasets and processing layers.
@@ -154,15 +154,15 @@ Every failure event is recorded with:
 This enables complete traceability and simplifies operational support.
 
 12. Future Enhancements
-    i. Append mode support.
-    ii. Merge/Upsert framework.
-    iii. SCD Type 1 framework.
-    iv. SCD Type 2 framework.
-    v. Delta Live Tables integration.
-    vi. Auto Loader integration.
-    vii. CI/CD deployment framework.
-    viii. Data Quality scorecard framework.
-    ix. Metadata migration from JSON to Delta configuration tables.
+    1. Append mode support.
+    2. Merge/Upsert framework.
+    3. SCD Type 1 framework.
+    4. SCD Type 2 framework.
+    5. Delta Live Tables integration.
+    6. Auto Loader integration.
+    7. CI/CD deployment framework.
+    8. Data Quality scorecard framework.
+    9. Metadata migration from JSON to Delta configuration tables.
 
 
 
