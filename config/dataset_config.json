@@ -1,42 +1,34 @@
 [
-  {
-    "dataset_name": "customer",
-    "source_path": "/FileStore/data/customer.csv",
-    "file_format": "csv",
-    "target_catalog": "retail",
-    "target_schema": "bronze",
-    "target_table": "customer_bronze",
-    "load_type": "full",
-    "primary_key": "customer_id"
-  },
-  {
-    "dataset_name": "product",
-    "source_path": "/FileStore/data/product.csv",
-    "file_format": "csv",
-    "target_catalog": "retail",
-    "target_schema": "bronze",
-    "target_table": "product_bronze",
-    "load_type": "full",
-    "primary_key": "product_id"
-  },
-  {
-    "dataset_name": "sales",
-    "source_path": "/FileStore/data/sales.csv",
-    "file_format": "csv",
-    "target_catalog": "retail",
-    "target_schema": "bronze",
-    "target_table": "sales_bronze",
-    "load_type": "full",
-    "primary_key": "sale_id"
-  },
-  {
-    "dataset_name": "store",
-    "source_path": "/FileStore/data/store.csv",
-    "file_format": "csv",
-    "target_catalog": "retail",
-    "target_schema": "bronze",
-    "target_table": "store_bronze",
-    "load_type": "full",
-    "primary_key": "store_id"
-  }
+	{
+		"dataset_id": 1,
+		"dataset_name": "customer",
+		"source_type" : "file",
+		"source_path" : "sample_data/customer.csv",
+		"file_format" : "csv",
+		"target_catalog" :"enterprise_framework",
+		"target_schema" : "bronze",
+		"target_table" : "customer",
+		"write_mode" : "overwrite",
+		"primary_keys" : ["customer_id"],
+		"schema_evolution_enabled" : true,
+		"active_flag" : true,
+		"created_ts" : null,
+		"updated_ts" : null
+	},
+	{
+		"dataset_id": 2,
+		"dataset_name": "sales",
+		"source_type" : "file",
+		"source_path" : "sample_data/sales.parquet",
+		"file_format" : "parquet",
+		"target_catalog" : "enterprise_framework",
+		"target_schema" : "bronze",
+		"target_table" : "sales",
+		"write_mode" : "overwrite",
+		"primary_keys" : ["sales_id"],
+		"schema_evolution_enabled" : true,
+		"active_flag" : true,
+		"created_ts" : null,
+		"updated_ts" : null
+	}
 ]
