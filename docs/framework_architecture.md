@@ -87,14 +87,13 @@
     2. For Silver Layer Validation, check deduplication, null, data quality, standardizaion, business rules.
     3. For Gold Layer Validation, check business rules.
 
-10. Schema Evolution Strategy-
-     If schema drift occurs:
-        1. Load data into Bronze layer.
-        2. Generate schema drift alert.
-        3. Update audit logs.
-        4. Stop Silver processing.
-        5. Stop Gold processing.
-        6. Await schema review and approval. 
+10. Schema Evolution Strategy - If schema drift occurs:
+    1. Load data into Bronze layer.
+    2. Generate schema drift alert.
+    3. Update audit logs.
+    4. Stop Silver processing.
+    5. Stop Gold processing.
+    6. Await schema review and approval. 
 
 11. Error Handling Strategy
 ### Objective - The framework implements a centralized error handling mechanism to ensure consistent failure management, operational visibility, and simplified troubleshooting across all datasets and processing layers.
