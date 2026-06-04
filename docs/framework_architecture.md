@@ -4,16 +4,16 @@
     The objective is to create a metadata-driven framework that allows onboarding of new datasets through configuration changes instead of code modifications.
 
 2. Business Requirement-
-    i. Support onboarding of multiple datasets.
-    ii. Support CSV, Parquet, and Delta formats.
-    iii. Follow Bronze-Silver-Gold architecture.
-    iv. Capture operational audit information.
-    v. Support schema evolution monitoring.
-    vi. Provide centralized error handling.
-    vii. Support metadata-driven processing.
-    viii. Minimize code changes during onboarding.
-    ix. Generate operational alerts.
-    x. Support future scalability for hundreds of datasets.
+    1. Support onboarding of multiple datasets.
+    2. Support CSV, Parquet, and Delta formats.
+    3. Follow Bronze-Silver-Gold architecture.
+    4. Capture operational audit information.
+    5. Support schema evolution monitoring.
+    6. Provide centralized error handling.
+    7. Support metadata-driven processing.
+    8. Minimize code changes during onboarding.
+    9. Generate operational alerts.
+    10. Support future scalability for hundreds of datasets.
 
 3. High Level Architecture-
 
