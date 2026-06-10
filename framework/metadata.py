@@ -1,7 +1,14 @@
 import json
 import os
 
-from framework.constants import (MANDATORY_FIELDS, SUPPORTED_SOURCE_TYPES, SUPPORTED_FILE_FORMATS, SUPPORTED_WRITE_MODES, DEPENDENCY_RULES)
+from framework.constants import (MANDATORY_FIELDS, 
+SUPPORTED_SOURCE_TYPES, 
+SUPPORTED_FILE_FORMATS, 
+SUPPORTED_WRITE_MODES, 
+DEPENDENCY_RULES,
+VALIDATION_MANDATORY_FIELDS,
+VALIDATION_SUPPORTED_VALUES,
+VALIDATION_DEPENDENCY)
 
 def load_metadata(metadata_path):
   if not os.path.exists(metadata_path):
@@ -15,9 +22,17 @@ def load_metadata(metadata_path):
     raise ValueError(f"No metadata configurations found : {metadata_path}")
   return metadata
 
+def get_dataset_context(dataset) :
+  return {
+    "dataset_id" : dataset.get("dataset_id"),
+    "dataset_name" : dataset.get("dataset_name"),
+    "target_catalog" : dataset.get("target_catalog"),
+    "target_schema" : dataset.get("target_schema"),
+    "target_table" : dataset.get("target_table"),
+    "source_path" : dataset.get("source_path")
+  }
 
 def validate_mandatory_fields(dataset):
-  dataset_name = dataset.get("dataset_name")
   missing_fields = []
 
   for field in MANDATORY_FIELDS :
@@ -29,10 +44,11 @@ def validate_mandatory_fields(dataset):
       "is_valid" : True
     }
   else :
+    dataset_context = get_dataset_context(dataset)
     return {
       "is_valid" : False,
-      "dataset_name" : dataset_name,
-      "validation_type" : "MANDATORY_FIELDS",
+      **dataset_context,
+      "validation_type" : VALIDATION_MANDATORY_FIELDS,
       "missing_fields" : missing_fields
     }
 
@@ -44,7 +60,6 @@ def validate_mandatory_fields(dataset):
 #    5. Return result
 
 def validate_supported_values(dataset):
-  dataset_name = dataset.get("dataset_name")
   dataset_source_type = dataset.get("source_type")
   dataset_file_format = dataset.get("file_format")
   dataset_write_mode = dataset.get("write_mode")
@@ -56,13 +71,13 @@ def validate_supported_values(dataset):
               "error_message" : "Unsupported Source Type"
               }
       invalid_fields.append(validation_error)
-  if dataset.get("file_format") not in SUPPORTED_FILE_FORMATS :
+  if dataset_file_format not in SUPPORTED_FILE_FORMATS :
       validation_error = {"field" : "file_format",
               "invalid_value" : dataset_file_format,
               "error_message" : "Unsupported File Format"
               }
       invalid_fields.append(validation_error)
-  if dataset.get("write_mode") not in SUPPORTED_WRITE_MODES :
+  if dataset_write_mode not in SUPPORTED_WRITE_MODES :
       validation_error = {"field" : "write_mode",
               "invalid_value" : dataset_write_mode,
               "error_message" : "Unsupported Write Mode"
@@ -73,15 +88,15 @@ def validate_supported_values(dataset):
       "is_valid" : True
     }
   else :
+    dataset_context = get_dataset_context(dataset)
     return {
       "is_valid" : False,
-      "dataset_name" : dataset_name,
-      "validation_type" : "SUPPORTED_VALUES",
+      **dataset_context,
+      "validation_type" : VALIDATION_SUPPORTED_VALUES,
       "invalid_fields" : invalid_fields,
     }
 
 def validate_dependencies(dataset) :
-  dataset_name = dataset.get("dataset_name")
   dataset_source_type = dataset.get("source_type")
 
   missing_dependency_fields = []
@@ -102,11 +117,11 @@ def validate_dependencies(dataset) :
       "is_valid" : True
     }
   else :
+    dataset_context = get_dataset_context(dataset)
     return {
       "is_valid" : False,
-      "dataset_name" : dataset_name,
-      "source_type" : dataset_source_type,
-      "validation_type" : "DEPENDENCY",
+      **dataset_context,
+      "validation_type" : VALIDATION_DEPENDENCY,
       "missing_dependency_fields" : missing_dependency_fields
     }
 
