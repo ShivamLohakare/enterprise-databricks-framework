@@ -1,15 +1,5 @@
 from framework.constants import (STATUS_SUCCESS, STATUS_STARTED, STATUS_FAILED, STATUS_SKIPPED)
 
-def get_dataset_context(dataset) :
-  return {
-    "dataset_id" : dataset.get("dataset_id"),
-    "dataset_name" : dataset.get("dataset_name"),
-    "target_catalog" : dataset.get("target_catalog"),
-    "target_schema" : dataset.get("target_schema"),
-    "target_table" : dataset.get("target_table"),
-    "source_path" : dataset.get("source_path")
-  }
-
 def create_audit_record(dataset_context, status, validation_type, error_details, audit_run_id, timestamp):
   audit_record = dataset_context.copy()
   audit_record["status"] = status
