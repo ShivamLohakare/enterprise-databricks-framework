@@ -49,7 +49,7 @@ def validate_mandatory_fields(dataset):
       "is_valid" : False,
       **dataset_context,
       "validation_type" : VALIDATION_MANDATORY_FIELDS,
-      "missing_fields" : missing_fields
+      "error_details" : missing_fields
     }
 
 #Logic: for validate_mandatory_fields
@@ -93,7 +93,7 @@ def validate_supported_values(dataset):
       "is_valid" : False,
       **dataset_context,
       "validation_type" : VALIDATION_SUPPORTED_VALUES,
-      "invalid_fields" : invalid_fields,
+      "error_details" : invalid_fields
     }
 
 def validate_dependencies(dataset) :
@@ -122,7 +122,7 @@ def validate_dependencies(dataset) :
       "is_valid" : False,
       **dataset_context,
       "validation_type" : VALIDATION_DEPENDENCY,
-      "missing_dependency_fields" : missing_dependency_fields
+      "error_details" : missing_dependency_fields
     }
 
 def validate_metadata(metadata):
